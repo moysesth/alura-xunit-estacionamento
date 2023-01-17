@@ -61,7 +61,7 @@ namespace Alura.Estacionamento.Teste
         [InlineData("Nome 2", "ASD-1123", "preto", "Opala")]
         [InlineData("Nome 3", "ASX-1123", "azul", "Maverick")]
 
-        public void LocalizaVeiculoPatio(string proprietario,
+        public void LocalizaVeiculoPatioPelaPlaca(string proprietario,
                                                        string placa,
                                                        string cor,
                                                        string modelo)
@@ -80,7 +80,7 @@ namespace Alura.Estacionamento.Teste
         }
 
         [Fact]
-        public void AlterarDadosVeiculo()
+        public void AlterarDadosVeiculoDoProprioVeiculo()
         {
             Patio estacionamento = new Patio();
             var veiculo = new Veiculo();
@@ -100,6 +100,26 @@ namespace Alura.Estacionamento.Teste
 
             Assert.Equal(alterado.Cor, veiculoAlterado.Cor);
 
+        }
+
+        [Theory]
+        [InlineData("Nome 1", "ASD-1234", "cinza", "Gol")]
+        public void LocalizaVeiculoNoPatioComBaseNaPlaca(string proprietario,
+                                                         string placa,
+                                                         string cor,
+                                                         string modelo)
+        {
+            Patio estacionamento = new Patio();
+            var veiculo = new Veiculo();
+            veiculo.Proprietario = proprietario;
+            veiculo.Placa = placa;
+            veiculo.Cor = cor;
+            veiculo.Modelo = modelo;
+            estacionamento.RegistrarEntradaVeiculo(veiculo);
+
+            var consultado = estacionamento.PesquisaVeiculo(placa);
+
+            Assert.Equal(placa, consultado.Placa);
         }
     }
 }
