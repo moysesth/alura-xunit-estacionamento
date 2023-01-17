@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 namespace Alura.Estacionamento.Modelos
 {
+    public VeiculoTeste()
+    {
+        Veiculo = new Veiculo();
+    }
     public class Veiculo
     {
         //Campos    

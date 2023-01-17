@@ -1,10 +1,21 @@
 using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Modelos;
+using Xunit.Abstractions;
 
 namespace Alura.Estacionamento.Teste
 {
     public class VeiculoTestes
     {
+
+        private Veiculo veiculo;
+        public ITestOutputHelper SaidaConsoleTeste;
+        puclic VeiculoTeste(ITestOutputHelper _saidaConsoleTeste)
+        {
+            SaidaConsoleTeste = _saidaConsoleTeste;
+            SaidaConsoleTeste.WriteLine("Construtor Invocado")
+            veiculo = new Veiculo();
+        }
+
         [Fact]
         public void TesteVeiculoAcelerar()
         {
@@ -17,7 +28,7 @@ namespace Alura.Estacionamento.Teste
         [Fact]
         public void TesteVeiculoFrear()
         {
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
             veiculo.Frear(10);
             Assert.Equal(-150, veiculo.VelocidadeAtual);
         }
